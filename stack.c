@@ -9,18 +9,19 @@
 int bof(char *str)
 {
     char buffer[12];
-
+    int x = 0;
     /* The following statement has a buffer overflow problem */ 
     strcpy(buffer, str);
-
+    printf("x: 0x%x\n", x);
     return 1;
 }
 
 int main(int argc, char **argv)
 {
-    char str[517];
-    FILE *badfile;
 
+    char str[517];
+    int x;
+    FILE *badfile; 
     badfile = fopen("badfile", "r");
     fread(str, sizeof(char), 517, badfile);
     bof(str);
