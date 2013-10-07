@@ -11,11 +11,6 @@ int bof(char *str)
     /* buffer here is allocated 12 bytes of memory by the compiler */
     char buffer[12];
 
-    /* int x is our own insertion that we use to print out the address
-       it is given. this is not necessary but was done for
-       informational purposes */
-    int x = 0;
-
     /* The following statement has a buffer overflow problem */
     /* strcpy is a vulnerable function because it does not do any
        bounds checking, insted it will copy the entire second argument
@@ -23,8 +18,8 @@ int bof(char *str)
        anything past the first argument's allocated memory. */
     strcpy(buffer, str);
 
-    /* using the allocated int x above, we print the address it was given */
-    printf("x: 0x%x\n", x);
+    /* initially find the address of buffer to help with deducing where we are */
+    /* printf("buffer: 0x%x\n", buffer); */
 
     /* This return pointer is allocated in the stack, 16 bytes past
        the beginning of buffer (plus another 4 bytes with the addition
@@ -40,6 +35,9 @@ int main(int argc, char **argv)
 {
 
     char str[517];
+
+    /* print out address of str for debugging purposes */
+    /* printf("str: 0x%x\n", str); */
 
     /* This program grabs unsanitized input from a file called
        badfile, which we can fill with exploit code */
