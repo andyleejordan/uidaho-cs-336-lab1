@@ -1,0 +1,19 @@
+Randomization On:
+the scanf function in vul_prog.c reads in an int and a string.
+this int, stored in the variable int_input, is what we use to hold the address of our second secret number to be overwritten. It is the decimal
+representation of the hex address of our second secret number. The address randomization wasn't an issue because the stack pointer still had the same
+distance to travel within the frame holding the secret number variables.
+ 
+Example Input to vul_prog.c:
+134524940
+%x,%x,%x,%x,%x,%x,%x,%n,%n
+
+
+Randomization Off:
+Example Input to write_string.c which adds the address of our second secret 
+number to the front of the file mystring which is directed into vul_prog.c 
+at runtime:
+%x,%x,%x,%x,%x,%x,%x,%n,%x,%n
+
+
+
